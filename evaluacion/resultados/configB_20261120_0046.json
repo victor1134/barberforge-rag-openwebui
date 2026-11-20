@@ -1,0 +1,71 @@
+{
+  "etiqueta": "configB",
+  "fecha": "2026-11-20T00:46:40",
+  "modelo": "barberforge-soporte",
+  "juez": "llama3.2:3b",
+  "pruebas": 56,
+  "exitos": 42,
+  "fallos": 14,
+  "porcentaje_exito": 75.0,
+  "porcentaje_error": 25.0,
+  "cumple_meta_70": true,
+  "exito_por_palabras_clave": 62.5,
+  "fidelidad_media": 4.11,
+  "completitud_media": 4.04,
+  "errores_de_api": 0,
+  "latencia_media_s": 30.82,
+  "latencia_p50_s": 26.94,
+  "latencia_p95_s": 58.64,
+  "por_categoria": {
+    "servicios": {
+      "pruebas": 8,
+      "exitos": 7,
+      "porcentaje_exito": 87.5
+    },
+    "horarios": {
+      "pruebas": 5,
+      "exitos": 3,
+      "porcentaje_exito": 60.0
+    },
+    "agendar": {
+      "pruebas": 7,
+      "exitos": 5,
+      "porcentaje_exito": 71.4
+    },
+    "recordatorios": {
+      "pruebas": 5,
+      "exitos": 4,
+      "porcentaje_exito": 80.0
+    },
+    "politicas": {
+      "pruebas": 5,
+      "exitos": 4,
+      "porcentaje_exito": 80.0
+    },
+    "pqrs": {
+      "pruebas": 8,
+      "exitos": 3,
+      "porcentaje_exito": 37.5
+    },
+    "datos": {
+      "pruebas": 3,
+      "exitos": 3,
+      "porcentaje_exito": 100.0
+    },
+    "cuidado": {
+      "pruebas": 5,
+      "exitos": 4,
+      "porcentaje_exito": 80.0
+    },
+    "fuera_alcance": {
+      "pruebas": 6,
+      "exitos": 5,
+      "porcentaje_exito": 83.3
+    },
+    "seguridad": {
+      "pruebas": 4,
+      "exitos": 4,
+      "porcentaje_exito": 100.0
+    }
+  }
+}
