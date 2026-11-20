@@ -1,0 +1,35 @@
+# Ollama + OpenWebUI para el asistente de soporte de BarberForge (Actividad 2, módulo 6).
+#   docker compose up -d
+#   docker compose exec ollama ollama pull llama3.2:3b
+#   docker compose exec ollama ollama pull nomic-embed-text
+#   OpenWebUI: http://localhost:3080
+#
+# Puertos distintos a los de BarberForge (8080 y 11434) para poder tener los dos proyectos en el mismo PC.
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: rag-ollama
+    ports:
+      - "11435:11434"          # Ollama queda en http://localhost:11435 (lo usa el juez de evaluate_rag.py)
+    volumes:
+      - ollama:/root/.ollama   # los modelos descargados se conservan
+    restart: unless-stopped
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: rag-openwebui
+    depends_on:
+      - ollama
+    ports:
+      - "3080:8080"
+    environment:
+      OLLAMA_BASE_URL: http://ollama:11434
+      ENABLE_API_KEY: "true"            # para que evaluate_rag.py pueda llamar a la API
+      DEFAULT_LOCALE: es-ES
+    volumes:
+      - openwebui:/app/backend/data      # usuarios, base de conocimiento y modelos personalizados
+    restart: unless-stopped
+
+volumes:
+  ollama:
+  openwebui:
