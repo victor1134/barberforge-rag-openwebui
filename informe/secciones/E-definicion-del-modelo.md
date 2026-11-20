@@ -11,8 +11,10 @@ Flujo de una pregunta:
 3. Arma el mensaje para el modelo: **prompt del sistema** (reglas) + **fragmentos recuperados** (contexto) + **pregunta**.
 4. **llama3.2:3b** genera la respuesta usando solo ese contexto, y OpenWebUI muestra las fuentes usadas.
 
-*Figura 1. Arquitectura del asistente: Usuario → OpenWebUI → búsqueda en la Knowledge (nomic-embed-text, Top K 4) →
-prompt del sistema + contexto + pregunta → llama3.2:3b (Ollama) → respuesta con fuentes.*
+![Arquitectura del asistente](../../evidencias/fig-01-arquitectura.png)
+
+*Figura 1. Arquitectura del asistente: el cliente pregunta en OpenWebUI, se buscan los 4 fragmentos más parecidos en la
+base de conocimiento y llama3.2:3b responde con el prompt del sistema, el contexto y la pregunta.*
 
 ## E.2 Modelo base y por qué
 Se eligió **llama3.2:3b** (3.200 millones de parámetros, ≈ 2 GB) porque:
@@ -41,7 +43,9 @@ fragmento conserva el tema al que pertenece.
 | 08-preguntas-frecuentes.md | Preguntas frecuentes | Javier |
 | 09-tratamiento-de-datos.md | Ley 1581 de 2012, derechos | Victor |
 
-*Figura 2. Base de conocimiento «Base BarberForge» en OpenWebUI con los 9 documentos (evidencias/config-02-knowledge.png).*
+![Base de conocimiento en OpenWebUI](../../evidencias/config-02-knowledge.png)
+
+*Figura 2. Base de conocimiento «Base BarberForge» en OpenWebUI con los 9 documentos.*
 
 ## E.4 Estrategia de fragmentación (corte)
 | Parámetro | Valor | Justificación |
@@ -52,8 +56,9 @@ fragmento conserva el tema al que pertenece.
 | **Solapamiento** | **100 tokens (20 %)** | Si una regla queda en el borde entre dos fragmentos, aparece completa en ambos |
 | Top K | 4 | Trae hasta 4 fragmentos: alcanza para preguntas que mezclan temas (por ejemplo precio y horario) sin llenar el contexto |
 
-*Figura 3. Configuración de documentos en Panel de Administración → Configuración → Documentos
-(evidencias/config-01-documents.png).*
+![Configuración de documentos](../../evidencias/config-01-documents.png)
+
+*Figura 3. Configuración de documentos en Panel de Administración → Configuración → Documentos.*
 
 ## E.5 Prompt del sistema y políticas
 El modelo personalizado **barberforge-soporte** usa este prompt del sistema:
@@ -113,8 +118,10 @@ En **Parámetros Avanzados** del modelo se cambiaron tres valores; el resto qued
 | max_tokens | **400** | Respuestas cortas, como pide el prompt (máximo 5 frases), y menor latencia |
 | num_ctx (Ollama) | **4096** | Ventana de contexto suficiente para el prompt del sistema + 4 fragmentos de 500 tokens + la pregunta y la respuesta |
 
+![Modelo barberforge-soporte](../../evidencias/config-03-modelo.png)
+
 *Figura 4. Modelo barberforge-soporte: modelo base llama3.2:3b, prompt del sistema, conocimiento «Base BarberForge» y
-parámetros avanzados (evidencias/config-03-modelo.png).*
+parámetros avanzados.*
 
 ## E.7 Experimento de configuración
 Para justificar el tamaño de fragmento se comparó la configuración principal con fragmentos más pequeños, evaluando las
