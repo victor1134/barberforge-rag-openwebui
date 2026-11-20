@@ -30,8 +30,11 @@
 Correr el Golden Dataset con dos configuraciones y comparar:
 | Configuración | Chunk | Overlap | Top K | Resultado (% éxito) | Latencia media |
 |---|---|---|---|---|---|
-| A (principal) | 500 | 100 | 4 | _completar_ | _completar_ |
-| B (fragmentos pequeños) | 250 | 50 | 4 | _completar_ | _completar_ |
+| A (principal) | 500 | 100 | 4 | **82,1 %** (46/56) | 30,47 s |
+| B (fragmentos pequeños) | 250 | 50 | 4 | 75,0 % (42/56) | 30,82 s |
+
+Se mantuvo la **A**: con fragmentos de 250 tokens bajaron el éxito y la fidelidad (detalle en la sección E.7 del
+informe y en `evaluacion/resultados/`).
 
 Para la B: cambiar Chunk Size y Overlap en Admin Panel → Settings → Documents, pulsar **Reindex** (o volver a subir
 los documentos a la Knowledge) y repetir la evaluación.
@@ -40,10 +43,11 @@ los documentos a la Knowledge) y repetir la evaluación.
 1. **Admin Panel → Settings → Documents:**
    Embedding Model Engine = Ollama · Embedding Model = `nomic-embed-text` · Text Splitter = Token (Tiktoken) ·
    Chunk Size = 500 · Chunk Overlap = 100 · Top K = 4 → **Save**. *(Captura 1)*
-2. **Workspace → Knowledge → +** «Base BarberForge» → subir los 9 archivos de `base-conocimiento/`. *(Captura 2)*
+2. **Workspace → Knowledge → +** «BarberForge» → subir los 9 archivos de `base-conocimiento/`. *(Captura 2)*
 3. **Workspace → Models → +** «barberforge-soporte»: modelo base `llama3.2:3b`, System Prompt de
-   `system-prompt.md`, Knowledge = «Base BarberForge», Advanced Params: Temperature 0.2, Context Length 4096,
-   Max Tokens 400 → **Save**. *(Captura 3)*
+   `system-prompt.md`, Knowledge = «BarberForge», Advanced Params: Temperature 0.2, Context Length 4096,
+   Max Tokens 400 · Capacidades → Llamada a funciones = **Heredado** → **Save**. *(Captura 3)*
+   En modo «Nativa» el modelo de 3B no consultaba la base de conocimiento por sí mismo.
 4. **Settings → Account → API Keys → Create new secret key** (para evaluate_rag.py; no se sube a GitHub). *(Captura 4,
    tapando la clave)*
 
