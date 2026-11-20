@@ -1,0 +1,3 @@
+# evaluate_rag.py solo usa la biblioteca estándar de Python 3.10+.
+# matplotlib es opcional: si está instalado, el script dibuja las gráficas para el informe.
+matplotlib>=3.8
