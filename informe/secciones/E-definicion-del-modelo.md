@@ -41,7 +41,7 @@ fragmento conserva el tema al que pertenece.
 | 08-preguntas-frecuentes.md | Preguntas frecuentes | Javier |
 | 09-tratamiento-de-datos.md | Ley 1581 de 2012, derechos | Victor |
 
-*Figura 2. Base de conocimiento «Base BarberForge» en OpenWebUI con los 9 documentos (`evidencias/config-02-knowledge.png`).*
+*Figura 2. Base de conocimiento «Base BarberForge» en OpenWebUI con los 9 documentos (evidencias/config-02-knowledge.png).*
 
 ## E.4 Estrategia de fragmentación (corte)
 | Parámetro | Valor | Justificación |
@@ -53,7 +53,7 @@ fragmento conserva el tema al que pertenece.
 | Top K | 4 | Trae hasta 4 fragmentos: alcanza para preguntas que mezclan temas (por ejemplo precio y horario) sin llenar el contexto |
 
 *Figura 3. Configuración de documentos en Panel de Administración → Configuración → Documentos
-(`evidencias/config-01-documents.png`).*
+(evidencias/config-01-documents.png).*
 
 ## E.5 Prompt del sistema y políticas
 El modelo personalizado **barberforge-soporte** usa este prompt del sistema:
@@ -114,7 +114,7 @@ En **Parámetros Avanzados** del modelo se cambiaron tres valores; el resto qued
 | num_ctx (Ollama) | **4096** | Ventana de contexto suficiente para el prompt del sistema + 4 fragmentos de 500 tokens + la pregunta y la respuesta |
 
 *Figura 4. Modelo barberforge-soporte: modelo base llama3.2:3b, prompt del sistema, conocimiento «Base BarberForge» y
-parámetros avanzados (`evidencias/config-03-modelo.png`).*
+parámetros avanzados (evidencias/config-03-modelo.png).*
 
 ## E.7 Experimento de configuración
 Para justificar el tamaño de fragmento se comparó la configuración principal con fragmentos más pequeños, evaluando las
